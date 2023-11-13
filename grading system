@@ -1,0 +1,82 @@
+package practicalexam;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class naga {
+	  public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        boolean continueProgram = true;
+
+	        while (continueProgram) {
+	            System.out.println("\n\t******Welcome to the Grading System******\n");
+	            System.out.print("Enter Your Name: "); // Input student name
+	            String studentName = scanner.nextLine(); // Display student name
+
+	            System.out.print("Enter Your Age: "); // Input student age
+	            String studentAge = scanner.nextLine(); // Display student age
+
+	            System.out.print("Enter Section: "); // Input student Section
+	            String studentSection = scanner.nextLine(); // Display student Section
+
+	            System.out.print("Enter Subject: "); // Input student Subject
+	            String subject = scanner.nextLine(); // Display student Subject
+	            
+	            boolean validInput = false;
+	            
+	   
+
+	            for (int i = 0; i < 10; i++) { // Loop for 10 attempts
+	                try {
+	                    System.out.print("***********************************************\t\n");
+	                    System.out.print("\nEnter the student's score (0-100): ");
+	                    int score = scanner.nextInt(); // Try to get an integer input
+
+	                    if (score < 0 || score > 100) {
+	                        System.out.println("Score should be between 0 and 100."); // Conditional statement for score range
+	                        continue; // Restart the loop if the score is out of range
+	                    }
+
+	                    // Conditional statements for grading
+	                    if (score >= 90) {
+	                        System.out.println("Grade: A");
+	                    } else if (score >= 80) {
+	                        System.out.println("Grade: B");
+	                    } else if (score >= 70) {
+	                        System.out.println("Grade: C");
+	                    } else if (score >= 60) {
+	                        System.out.println("Grade: D");
+	                    } else {
+	                        System.out.println("Grade: F");
+	                    }
+
+	                    validInput = true; // Set flag to exit loop
+	                    break; // Exit the loop after successful input
+	                } catch (InputMismatchException e) {
+	                    System.out.println("Invalid input. Please enter a number."); // Exception handling for non-integer input
+	                    scanner.next(); // Move scanner to the next line to avoid an infinite loop
+	                }
+	            }
+
+	            if (!validInput) {
+	                System.out.println("Exceeded attempts or invalid input. Exiting program."); // Handling the case of repeated invalid inputs
+	            }
+
+	            // Summary of inputs
+	            System.out.println("\n**************Summary**************");
+	            System.out.println("Student Name: " + studentName);
+	            System.out.println("Student Age: " + studentAge);
+	            System.out.println("Student Section: " + studentSection);
+	            System.out.println("Subject: " + subject);
+
+	            // Asking if the user wants to try again
+	            System.out.print("\n***********************************************\t\n");
+	            System.out.print("Do you want to try again? (yes/no): ");
+	            String tryAgain = scanner.next();
+	            if (!tryAgain.equalsIgnoreCase("yes")) {
+	                continueProgram = false;
+	            }
+	        }
+
+	        scanner.close();
+	    }
+	}
+
